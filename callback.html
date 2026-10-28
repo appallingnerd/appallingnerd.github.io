@@ -1,0 +1,13 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Authorization code</title>
+<style>body{font-family:sans-serif;max-width:40em;margin:2em auto;padding:0 1em}textarea{width:100%;height:8em}</style></head>
+<body><h1>Authorization code</h1>
+<p>Copy this code and paste it back in chat. It expires in a few minutes.</p>
+<textarea id="c" readonly></textarea>
+<p><button onclick="navigator.clipboard.writeText(document.getElementById('c').value)">Copy</button></p>
+<p id="s"></p>
+<script>
+var p=new URLSearchParams(location.search);
+document.getElementById('c').value=p.get('code')||'(no code in URL)';
+var e=p.get('error');document.getElementById('s').textContent=(e?('Error: '+e+' '+(p.get('error_description')||'')):'')+(p.get('state')?(' state='+p.get('state')):'');
+</script></body></html>
